@@ -49,9 +49,10 @@ public class Tile {
         return currentSymbol;
     }
 
-    public void addCnt(){
+    public int addCnt(){
         nearbyBombCnt++;
         showBombCnt();
+        return nearbyBombCnt;
     }
 
     public void showBombCnt(){

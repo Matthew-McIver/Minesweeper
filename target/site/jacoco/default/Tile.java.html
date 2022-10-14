@@ -49,18 +49,19 @@
 <span class="nc" id="L49">        return currentSymbol;</span>
     }
 
-    public void addCnt(){
+    public int addCnt(){
 <span class="fc" id="L53">        nearbyBombCnt++;</span>
 <span class="fc" id="L54">        showBombCnt();</span>
-<span class="fc" id="L55">    }</span>
+<span class="fc" id="L55">        return nearbyBombCnt;</span>
+    }
 
     public void showBombCnt(){
-<span class="fc" id="L58">        String combinedValues = &quot; &quot; + nearbyBombCnt + &quot; &quot;;</span>
-<span class="fc" id="L59">        this.mySymbol = combinedValues;</span>
-<span class="fc" id="L60">    }</span>
+<span class="fc" id="L59">        String combinedValues = &quot; &quot; + nearbyBombCnt + &quot; &quot;;</span>
+<span class="fc" id="L60">        this.mySymbol = combinedValues;</span>
+<span class="fc" id="L61">    }</span>
 
     public boolean getVisibility(){
-<span class="fc" id="L63">        return tileVisible;</span>
+<span class="fc" id="L64">        return tileVisible;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

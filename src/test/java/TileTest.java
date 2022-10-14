@@ -28,4 +28,9 @@ public class TileTest {
     public void showSymbolTest(){
         Assertions.assertEquals(" - ", testTile.showSymbol(), "The current symbol is incorrect.");
     }
+
+    @Test
+    public void addCntTest(){
+        Assertions.assertEquals(1, testTile.addCnt(), "The counter isn't counting.");
+    }
 }
