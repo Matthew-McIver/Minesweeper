@@ -8,14 +8,14 @@
     private String currentSymbol;
 
     //Constructor
-<span class="nc" id="L11">    public Tile(){</span>
-<span class="nc" id="L12">        this.nearbyBombCnt = 0;</span>
-<span class="nc" id="L13">        this.tileVisible = false;</span>
-<span class="nc" id="L14">        this.isBomb = false;</span>
-<span class="nc" id="L15">        this.isFlag = false;</span>
-<span class="nc" id="L16">        this.mySymbol = &quot; O &quot;;</span>
-<span class="nc" id="L17">        this.currentSymbol = &quot; - &quot;;</span>
-<span class="nc" id="L18">    }</span>
+<span class="fc" id="L11">    public Tile(){</span>
+<span class="fc" id="L12">        this.nearbyBombCnt = 0;</span>
+<span class="fc" id="L13">        this.tileVisible = false;</span>
+<span class="fc" id="L14">        this.isBomb = false;</span>
+<span class="fc" id="L15">        this.isFlag = false;</span>
+<span class="fc" id="L16">        this.mySymbol = &quot; O &quot;;</span>
+<span class="fc" id="L17">        this.currentSymbol = &quot; - &quot;;</span>
+<span class="fc" id="L18">    }</span>
 
     //Methods
     public void setNearbyBombCnt(int nearBombCnt){
@@ -26,11 +26,11 @@
     }
 
     public void setBomb(){
-<span class="nc" id="L29">        this.isBomb = true;</span>
-<span class="nc" id="L30">        this.mySymbol = &quot; X &quot;;</span>
-<span class="nc" id="L31">    }</span>
+<span class="fc" id="L29">        this.isBomb = true;</span>
+<span class="fc" id="L30">        this.mySymbol = &quot; X &quot;;</span>
+<span class="fc" id="L31">    }</span>
     public boolean getBomb(){
-<span class="nc" id="L33">        return isBomb;</span>
+<span class="fc" id="L33">        return isBomb;</span>
     }
 
     public void setFlag(){
@@ -50,17 +50,17 @@
     }
 
     public void addCnt(){
-<span class="nc" id="L53">        nearbyBombCnt++;</span>
-<span class="nc" id="L54">        showBombCnt();</span>
-<span class="nc" id="L55">    }</span>
+<span class="fc" id="L53">        nearbyBombCnt++;</span>
+<span class="fc" id="L54">        showBombCnt();</span>
+<span class="fc" id="L55">    }</span>
 
     public void showBombCnt(){
-<span class="nc" id="L58">        String combinedValues = &quot; &quot; + nearbyBombCnt + &quot; &quot;;</span>
-<span class="nc" id="L59">        this.mySymbol = combinedValues;</span>
-<span class="nc" id="L60">    }</span>
+<span class="fc" id="L58">        String combinedValues = &quot; &quot; + nearbyBombCnt + &quot; &quot;;</span>
+<span class="fc" id="L59">        this.mySymbol = combinedValues;</span>
+<span class="fc" id="L60">    }</span>
 
     public boolean getVisibility(){
-<span class="nc" id="L63">        return tileVisible;</span>
+<span class="fc" id="L63">        return tileVisible;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

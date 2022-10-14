@@ -6,35 +6,35 @@
     private int numOfFlags;
 
     //Constructor
-<span class="nc" id="L9">    Board(int boardSize) {</span>
-<span class="nc" id="L10">        this.boardLength = boardSize;</span>
-<span class="nc" id="L11">        this.boardGame = new Tile[boardLength][boardLength];</span>
-<span class="nc" id="L12">        this.numOfBombs = (int) ((boardLength * boardLength) * 0.3);</span>
-<span class="nc" id="L13">        setTiles();</span>
-<span class="nc" id="L14">        setBombs();</span>
-<span class="nc" id="L15">    }</span>
+<span class="fc" id="L9">    Board(int boardSize) {</span>
+<span class="fc" id="L10">        this.boardLength = boardSize;</span>
+<span class="fc" id="L11">        this.boardGame = new Tile[boardLength][boardLength];</span>
+<span class="fc" id="L12">        this.numOfBombs = (int) ((boardLength * boardLength) * 0.3);</span>
+<span class="fc" id="L13">        setTiles();</span>
+<span class="fc" id="L14">        setBombs();</span>
+<span class="fc" id="L15">    }</span>
 
     //Method
     public void setTiles() {
-<span class="nc bnc" id="L19" title="All 2 branches missed.">        for (int i = 0; i &lt; boardLength; i++) {</span>
-<span class="nc bnc" id="L20" title="All 2 branches missed.">            for (int j = 0; j &lt; boardLength; j++) {</span>
-<span class="nc" id="L21">                boardGame[i][j] = new Tile();</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">        for (int i = 0; i &lt; boardLength; i++) {</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">            for (int j = 0; j &lt; boardLength; j++) {</span>
+<span class="fc" id="L21">                boardGame[i][j] = new Tile();</span>
             }
         }
-<span class="nc" id="L24">    }</span>
+<span class="fc" id="L24">    }</span>
 
     public void setBombs() {
         int i, j;
-<span class="nc bnc" id="L28" title="All 2 branches missed.">        while (numOfBombs != 0) {</span>
-<span class="nc" id="L29">            i = (int) (Math.random() * boardLength);</span>
-<span class="nc" id="L30">            j = (int) (Math.random() * boardLength);</span>
-<span class="nc bnc" id="L31" title="All 2 branches missed.">            if (!boardGame[i][j].getBomb()) {</span>
-<span class="nc" id="L32">                boardGame[i][j].setBomb();</span>
-<span class="nc" id="L33">                setNums(i, j);</span>
-<span class="nc" id="L34">                numOfBombs--;</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        while (numOfBombs != 0) {</span>
+<span class="fc" id="L29">            i = (int) (Math.random() * boardLength);</span>
+<span class="fc" id="L30">            j = (int) (Math.random() * boardLength);</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">            if (!boardGame[i][j].getBomb()) {</span>
+<span class="fc" id="L32">                boardGame[i][j].setBomb();</span>
+<span class="fc" id="L33">                setNums(i, j);</span>
+<span class="fc" id="L34">                numOfBombs--;</span>
             }
         }
-<span class="nc" id="L37">    }</span>
+<span class="fc" id="L37">    }</span>
 
     public String displayScreen() {
 <span class="nc" id="L40">        String toReturn = &quot;&quot;;</span>
@@ -56,36 +56,36 @@
     }
 
     public boolean checkVisibility(int x, int y){
-<span class="nc" id="L59">        return boardGame[x][y].getVisibility();</span>
+<span class="fc" id="L59">        return boardGame[x][y].getVisibility();</span>
     }
 
     private void setNums(int i, int j) {
         boolean i_over, j_over;
         int new_i, new_j;
-<span class="nc bnc" id="L65" title="All 2 branches missed.">        for (int a = -1; a &lt; 2; a++) {</span>
-<span class="nc bnc" id="L66" title="All 2 branches missed.">            for (int b = -1; b &lt; 2; b++) {</span>
-<span class="nc" id="L67">                i_over = j_over = true;</span>
-<span class="nc" id="L68">                new_i = i + a;</span>
-<span class="nc" id="L69">                new_j = j + b;</span>
-<span class="nc bnc" id="L70" title="All 4 branches missed.">                if (new_i &lt; boardLength &amp;&amp; new_i &gt;= 0) {</span>
-<span class="nc" id="L71">                    i_over = false;</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        for (int a = -1; a &lt; 2; a++) {</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">            for (int b = -1; b &lt; 2; b++) {</span>
+<span class="fc" id="L67">                i_over = j_over = true;</span>
+<span class="fc" id="L68">                new_i = i + a;</span>
+<span class="fc" id="L69">                new_j = j + b;</span>
+<span class="fc bfc" id="L70" title="All 4 branches covered.">                if (new_i &lt; boardLength &amp;&amp; new_i &gt;= 0) {</span>
+<span class="fc" id="L71">                    i_over = false;</span>
                 }
-<span class="nc bnc" id="L73" title="All 4 branches missed.">                if (new_j &lt; boardLength &amp;&amp; new_j &gt;= 0) {</span>
-<span class="nc" id="L74">                    j_over = false;</span>
+<span class="fc bfc" id="L73" title="All 4 branches covered.">                if (new_j &lt; boardLength &amp;&amp; new_j &gt;= 0) {</span>
+<span class="fc" id="L74">                    j_over = false;</span>
                 }
-<span class="nc bnc" id="L76" title="All 4 branches missed.">                if (a == 0 &amp;&amp; b == 0) {</span>
-<span class="nc" id="L77">                    continue;</span>
+<span class="fc bfc" id="L76" title="All 4 branches covered.">                if (a == 0 &amp;&amp; b == 0) {</span>
+<span class="fc" id="L77">                    continue;</span>
                 }
-<span class="nc bnc" id="L79" title="All 4 branches missed.">                if (i_over || j_over) {</span>
-<span class="nc" id="L80">                    continue;</span>
+<span class="fc bfc" id="L79" title="All 4 branches covered.">                if (i_over || j_over) {</span>
+<span class="fc" id="L80">                    continue;</span>
                 }
-<span class="nc bnc" id="L82" title="All 2 branches missed.">                if (boardGame[new_i][new_j].getBomb()) {</span>
-<span class="nc" id="L83">                    continue;</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">                if (boardGame[new_i][new_j].getBomb()) {</span>
+<span class="fc" id="L83">                    continue;</span>
                 }
-<span class="nc" id="L85">                boardGame[new_i][new_j].addCnt();</span>
+<span class="fc" id="L85">                boardGame[new_i][new_j].addCnt();</span>
             }
         }
-<span class="nc" id="L88">    }</span>
+<span class="fc" id="L88">    }</span>
 
     public void revealingRecursion(int i, int j) {
         boolean i_over, j_over;
