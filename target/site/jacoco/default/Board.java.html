@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Board.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MinesweepingTime</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Board.java</span></div><h1>Board.java</h1><pre class="source lang-java linenums">public class Board {
+    //Attributes
+    private Tile[][] boardGame;
+    private int boardLength;
+    private int numOfBombs;
+    private int numOfFlags;
+
+    //Constructor
+<span class="nc" id="L9">    Board(int boardSize) {</span>
+<span class="nc" id="L10">        this.boardLength = boardSize;</span>
+<span class="nc" id="L11">        this.boardGame = new Tile[boardLength][boardLength];</span>
+<span class="nc" id="L12">        this.numOfBombs = (int) ((boardLength * boardLength) * 0.3);</span>
+<span class="nc" id="L13">        setTiles();</span>
+<span class="nc" id="L14">        setBombs();</span>
+<span class="nc" id="L15">    }</span>
+
+    //Method
+    public void setTiles() {
+<span class="nc bnc" id="L19" title="All 2 branches missed.">        for (int i = 0; i &lt; boardLength; i++) {</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">            for (int j = 0; j &lt; boardLength; j++) {</span>
+<span class="nc" id="L21">                boardGame[i][j] = new Tile();</span>
+            }
+        }
+<span class="nc" id="L24">    }</span>
+
+    public void setBombs() {
+        int i, j;
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        while (numOfBombs != 0) {</span>
+<span class="nc" id="L29">            i = (int) (Math.random() * boardLength);</span>
+<span class="nc" id="L30">            j = (int) (Math.random() * boardLength);</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            if (!boardGame[i][j].getBomb()) {</span>
+<span class="nc" id="L32">                boardGame[i][j].setBomb();</span>
+<span class="nc" id="L33">                setNums(i, j);</span>
+<span class="nc" id="L34">                numOfBombs--;</span>
+            }
+        }
+<span class="nc" id="L37">    }</span>
+
+    public String displayScreen() {
+<span class="nc" id="L40">        String toReturn = &quot;&quot;;</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        for (int i = 0; i &lt; boardLength; i++) {</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            for (int j = 0; j &lt; boardLength; j++) {</span>
+<span class="nc" id="L43">                toReturn += boardGame[i][j].showSymbol();</span>
+            }
+<span class="nc" id="L45">            toReturn += &quot;\n&quot;;</span>
+        }
+<span class="nc" id="L47">        return toReturn;</span>
+    }
+
+    public void showSingleTile(int x, int y) {
+<span class="nc" id="L51">        boardGame[x][y].changeVisibility();</span>
+<span class="nc" id="L52">    }</span>
+
+    public boolean checkBomb(int x, int y) {
+<span class="nc" id="L55">        return boardGame[x][y].getBomb();</span>
+    }
+
+    public boolean checkVisibility(int x, int y){
+<span class="nc" id="L59">        return boardGame[x][y].getVisibility();</span>
+    }
+
+    private void setNums(int i, int j) {
+        boolean i_over, j_over;
+        int new_i, new_j;
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        for (int a = -1; a &lt; 2; a++) {</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            for (int b = -1; b &lt; 2; b++) {</span>
+<span class="nc" id="L67">                i_over = j_over = true;</span>
+<span class="nc" id="L68">                new_i = i + a;</span>
+<span class="nc" id="L69">                new_j = j + b;</span>
+<span class="nc bnc" id="L70" title="All 4 branches missed.">                if (new_i &lt; boardLength &amp;&amp; new_i &gt;= 0) {</span>
+<span class="nc" id="L71">                    i_over = false;</span>
+                }
+<span class="nc bnc" id="L73" title="All 4 branches missed.">                if (new_j &lt; boardLength &amp;&amp; new_j &gt;= 0) {</span>
+<span class="nc" id="L74">                    j_over = false;</span>
+                }
+<span class="nc bnc" id="L76" title="All 4 branches missed.">                if (a == 0 &amp;&amp; b == 0) {</span>
+<span class="nc" id="L77">                    continue;</span>
+                }
+<span class="nc bnc" id="L79" title="All 4 branches missed.">                if (i_over || j_over) {</span>
+<span class="nc" id="L80">                    continue;</span>
+                }
+<span class="nc bnc" id="L82" title="All 2 branches missed.">                if (boardGame[new_i][new_j].getBomb()) {</span>
+<span class="nc" id="L83">                    continue;</span>
+                }
+<span class="nc" id="L85">                boardGame[new_i][new_j].addCnt();</span>
+            }
+        }
+<span class="nc" id="L88">    }</span>
+
+    public void revealingRecursion(int i, int j) {
+        boolean i_over, j_over;
+        int new_i, new_j;
+<span class="nc" id="L93">        boardGame[i][j].changeVisibility();</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        if (boardGame[i][j].getNearbyBombCnt() == 0) {</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            for (int a = -1; a &lt; 2; a++) {</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">                for (int b = -1; b &lt; 2; b++) {</span>
+<span class="nc" id="L97">                    i_over = j_over = true;</span>
+<span class="nc" id="L98">                    new_i = i + a;</span>
+<span class="nc" id="L99">                    new_j = j + b;</span>
+<span class="nc bnc" id="L100" title="All 4 branches missed.">                    if (new_i &lt; boardLength &amp;&amp; new_i &gt;= 0) {</span>
+<span class="nc" id="L101">                        i_over = false;</span>
+                    }
+<span class="nc bnc" id="L103" title="All 4 branches missed.">                    if (new_j &lt; boardLength &amp;&amp; new_j &gt;= 0) {</span>
+<span class="nc" id="L104">                        j_over = false;</span>
+                    }
+<span class="nc bnc" id="L106" title="All 4 branches missed.">                    if (a == 0 &amp;&amp; b == 0) {</span>
+<span class="nc" id="L107">                        continue;</span>
+                    }
+<span class="nc bnc" id="L109" title="All 4 branches missed.">                    if (i_over || j_over) {</span>
+<span class="nc" id="L110">                        continue;</span>
+                    }
+<span class="nc bnc" id="L112" title="All 2 branches missed.">                    if (boardGame[new_i][new_j].getBomb()) {</span>
+<span class="nc" id="L113">                        continue;</span>
+                    }
+<span class="nc bnc" id="L115" title="All 2 branches missed.">                    if (boardGame[new_i][new_j].getVisibility()) {</span>
+<span class="nc" id="L116">                        continue;</span>
+                    }
+<span class="nc" id="L118">                    boardGame[i][j].changeVisibility();</span>
+<span class="nc" id="L119">                    revealingRecursion(new_i, new_j);</span>
+                }
+            }
+        }
+<span class="nc" id="L123">    }</span>
+
+
+
+    //public void checkWin(int i, int j){
+        //for (i = 0; i &lt; boardLength; i++){
+            //for (j = 0; j &lt; boardLength; j++){
+                //if (boardGame[i][j].getVisibility()){
+
+               //}
+
+           //}
+       //}
+  //}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,6 +1,6 @@
 public class Board {
     //Attributes
-    private Tile[][] board;
+    private Tile[][] boardGame;
     private int boardLength;
     private int numOfBombs;
     private int numOfFlags;
@@ -8,18 +8,17 @@ public class Board {
     //Constructor
     Board(int boardSize) {
         this.boardLength = boardSize;
-        this.board = new Tile[boardLength][boardLength];
-        this.numOfBombs = (int) ((boardLength * boardLength) * 0.1);
+        this.boardGame = new Tile[boardLength][boardLength];
+        this.numOfBombs = (int) ((boardLength * boardLength) * 0.3);
         setTiles();
         setBombs();
-        //Start game.
     }
 
     //Method
     public void setTiles() {
         for (int i = 0; i < boardLength; i++) {
             for (int j = 0; j < boardLength; j++) {
-                board[i][j] = new Tile();
+                boardGame[i][j] = new Tile();
             }
         }
     }
@@ -29,10 +28,9 @@ public class Board {
         while (numOfBombs != 0) {
             i = (int) (Math.random() * boardLength);
             j = (int) (Math.random() * boardLength);
-            if (!board[i][j].getBomb()) {
-                board[i][j].setBomb();
+            if (!boardGame[i][j].getBomb()) {
+                boardGame[i][j].setBomb();
                 setNums(i, j);
-                System.out.println("i is: " + i + " & j is: " + j);
                 numOfBombs--;
             }
         }
@@ -42,7 +40,7 @@ public class Board {
         String toReturn = "";
         for (int i = 0; i < boardLength; i++) {
             for (int j = 0; j < boardLength; j++) {
-                toReturn += board[i][j].showSymbol();
+                toReturn += boardGame[i][j].showSymbol();
             }
             toReturn += "\n";
         }
@@ -50,11 +48,15 @@ public class Board {
     }
 
     public void showSingleTile(int x, int y) {
-        board[x][y].changeVisibility();
+        boardGame[x][y].changeVisibility();
     }
 
     public boolean checkBomb(int x, int y) {
-        return board[x][y].getBomb();
+        return boardGame[x][y].getBomb();
+    }
+
+    public boolean checkVisibility(int x, int y){
+        return boardGame[x][y].getVisibility();
     }
 
     private void setNums(int i, int j) {
@@ -77,10 +79,10 @@ public class Board {
                 if (i_over || j_over) {
                     continue;
                 }
-                if (board[new_i][new_j].getBomb()) {
+                if (boardGame[new_i][new_j].getBomb()) {
                     continue;
                 }
-                board[new_i][new_j].addCnt();
+                boardGame[new_i][new_j].addCnt();
             }
         }
     }
@@ -88,8 +90,8 @@ public class Board {
     public void revealingRecursion(int i, int j) {
         boolean i_over, j_over;
         int new_i, new_j;
-        board[i][j].changeVisibility();
-        if (board[i][j].getNearbyBombCnt() == 0) {
+        boardGame[i][j].changeVisibility();
+        if (boardGame[i][j].getNearbyBombCnt() == 0) {
             for (int a = -1; a < 2; a++) {
                 for (int b = -1; b < 2; b++) {
                     i_over = j_over = true;
@@ -107,16 +109,29 @@ public class Board {
                     if (i_over || j_over) {
                         continue;
                     }
-                    if (board[new_i][new_j].getBomb()) {
+                    if (boardGame[new_i][new_j].getBomb()) {
                         continue;
                     }
-                    if (board[new_i][new_j].getVisibility()) {
+                    if (boardGame[new_i][new_j].getVisibility()) {
                         continue;
                     }
-                    board[i][j].changeVisibility();
+                    boardGame[i][j].changeVisibility();
                     revealingRecursion(new_i, new_j);
                 }
             }
         }
     }
+
+
+
+    //public void checkWin(int i, int j){
+        //for (i = 0; i < boardLength; i++){
+            //for (j = 0; j < boardLength; j++){
+                //if (boardGame[i][j].getVisibility()){
+
+               //}
+
+           //}
+       //}
+  //}
 }
